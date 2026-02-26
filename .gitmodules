@@ -1,0 +1,18 @@
+[submodule "submods/bgfx"]
+	path = submods/bgfx
+	url = https://github.com/bkaradzic/bgfx.git
+[submodule "submods/bimg"]
+	path = submods/bimg
+	url = https://github.com/bkaradzic/bimg.git
+[submodule "submods/assimp"]
+	path = submods/assimp
+	url = https://github.com/assimp/assimp.git
+[submodule "submods/entt"]
+	path = submods/entt
+	url = https://github.com/skypjack/entt.git
+[submodule "submods/bx"]
+	path = submods/bx
+	url = https://github.com/bkaradzic/bx.git
+[submodule "submods/bnet"]
+	path = submods/bnet
+	url = https://github.com/bkaradzic/bnet.git
