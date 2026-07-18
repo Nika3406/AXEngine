@@ -1,0 +1,20 @@
+{
+  "name": "Slash_WideArc_Mesh",
+  "type": "BlenderMesh",
+  "mesh": "assets/vfx/meshes/Slash_WideArc.glb",
+  "material": "assets/materials/Slash_Additive.axmat",
+  "lifetime": 0.28,
+  "facing": "FollowDirection",
+  "attachTo": "WeaponSocket",
+  "debugFallback": true,
+  "offset": [0.0, 1.15, 1.0],
+  "rotation": [0.0, 0.0, 0.0],
+  "scale": [1.0, 1.0, 1.0],
+  "scaleStart": [0.35, 0.35, 0.35],
+  "scaleMid": [1.35, 1.35, 1.35],
+  "scaleEnd": [1.05, 1.05, 1.05],
+  "alphaStart": 0.0,
+  "alphaMid": 0.95,
+  "alphaEnd": 0.0,
+  "tint": [0.45, 0.85, 1.0, 1.0]
+}

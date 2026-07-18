@@ -1,0 +1,27 @@
+{
+  "format": "AXAttack",
+  "assetId": "attack-punch-01",
+  "version": 1,
+  "name": "PunchAttack1",
+  "duration": 0.55,
+  "colliders": [
+    {
+      "name": "HandStrike",
+      "shape": "Box",
+      "direction": "Forward",
+      "offset": [0.0, 1.15, 1.05],
+      "rotation": [0.0, 0.0, 0.0],
+      "size": [1.55, 1.15, 1.15],
+      "radius": 0.75,
+      "height": 1.2,
+      "activeFrom": 0.13,
+      "activeTo": 0.26,
+      "damage": 12.0,
+      "hitstop": 0.035,
+      "knockback": [0.0, 0.7, 3.4],
+      "launch": false,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

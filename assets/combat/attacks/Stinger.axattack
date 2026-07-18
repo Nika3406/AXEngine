@@ -1,0 +1,26 @@
+{
+  "format": "AXAttack",
+  "version": 1,
+  "name": "Stinger",
+  "duration": 0.72,
+  "colliders": [
+    {
+      "name": "ForwardPierce",
+      "shape": "Box",
+      "direction": "Forward",
+      "offset": [0.0, 1.0, 3.2],
+      "rotation": [0.0, 0.0, 0.0],
+      "size": [0.9, 1.0, 5.8],
+      "radius": 0.45,
+      "height": 5.8,
+      "activeFrom": 0.18,
+      "activeTo": 0.36,
+      "damage": 28.0,
+      "hitstop": 0.07,
+      "knockback": [0.0, 0.4, 9.0],
+      "launch": false,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

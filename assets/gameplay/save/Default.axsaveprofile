@@ -1,0 +1,10 @@
+{
+  "type": "AXSaveProfile",
+  "version": 1,
+  "name": "DefaultSaveProfile",
+  "description": "Default game-state save plan. This is for runtime saves, not editor scene saves.",
+  "saveGlobals": ["currentScene", "checkpoint", "difficulty", "playTimeSeconds"],
+  "saveObjectTags": ["Player", "Persistent", "Inventory", "Quest", "VoxelEdit"],
+  "saveTransform": true,
+  "saveComponentValues": true
+}

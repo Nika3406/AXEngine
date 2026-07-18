@@ -1,0 +1,15 @@
+{
+  "type": "AXInput",
+  "assetId": "input-default",
+  "version": 1,
+  "bufferSeconds": 0.18,
+  "actions": [
+    {"name":"Move", "keyboard":"WASD", "gamepad":"LeftStick"},
+    {"name":"CameraLook", "keyboard":"Mouse", "gamepad":"RightStick"},
+    {"name":"Attack", "keyboard":"J/MouseLeft", "gamepad":"X/Square"},
+    {"name":"Special", "keyboard":"K/MouseRight", "gamepad":"Y/Triangle"},
+    {"name":"Jump", "keyboard":"Space", "gamepad":"A/Cross"},
+    {"name":"Dash", "keyboard":"LeftShift", "gamepad":"B/Circle"},
+    {"name":"LockOn", "keyboard":"Q", "gamepad":"RightShoulder"}
+  ]
+}

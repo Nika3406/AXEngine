@@ -1,0 +1,10 @@
+{
+  "name": "BattleTheme",
+  "category": "Music",
+  "space": "Music",
+  "clip": "assets/audio/battle_theme.ogg",
+  "volume": 0.70,
+  "loop": true,
+  "fadeIn": 0.75,
+  "fadeOut": 1.0
+}

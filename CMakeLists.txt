@@ -1,355 +1,215 @@
-cmake_minimum_required(VERSION 3.16)
-project(AXEngine VERSION 0.1.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.20)
+project(AXEngine LANGUAGES C CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-# ---------------------------
-# Options
-# ---------------------------
-option(AX_UPDATE_SUBMODULES "Update git submodules during configure" ON)
-option(AX_BUILD_SANDBOX     "Build the sandbox/game executable" ON)
-option(AX_UNITY_BUILD       "Enable unity builds (faster builds)" OFF)
+option(AX_BUILD_EDITOR "Build the AXEditor Dear ImGui tool" ON)
+option(AX_BUILD_TESTS "Build AXEngine smoke tests" ON)
+option(AX_USE_VENDORED_SDL3 "Use third_party/SDL when it is present" ON)
 
-option(AX_ENABLE_WARNINGS   "Enable extra warnings" ON)
-option(AX_ENABLE_ASAN       "Enable Address/UB sanitizers" OFF)
-
-# ---------------------------
-# Submodules (optional update)
-# ---------------------------
-find_package(Git QUIET)
-if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
-    if(AX_UPDATE_SUBMODULES)
-        message(STATUS "Updating git submodules...")
-        execute_process(
-            COMMAND "${GIT_EXECUTABLE}" submodule update --init --recursive
-            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-            RESULT_VARIABLE GIT_SUBMOD_RESULT
-        )
-        if(NOT GIT_SUBMOD_RESULT EQUAL 0)
-        message(FATAL_ERROR "git submodule update --init --recursive failed (${GIT_SUBMOD_RESULT})")
-        endif()
-    endif()
-endif()
-
-# ---------------------------
-# Paths
-# ---------------------------
-set(SUBMODS_DIR "${PROJECT_SOURCE_DIR}/submods")
-set(BX_DIR      "${SUBMODS_DIR}/bx")
-set(BIMG_DIR    "${SUBMODS_DIR}/bimg")
-set(BGFX_DIR    "${SUBMODS_DIR}/bgfx")
-set(ASSIMP_DIR  "${SUBMODS_DIR}/assimp")
-set(ENTT_DIR    "${SUBMODS_DIR}/entt")
-
-function(require_submodule name path)
-    if(NOT EXISTS "${path}")
-        message(FATAL_ERROR
-            "Missing submodule '${name}' at: ${path}\n"
-            "Run: git submodule update --init --recursive"
-        )
-    endif()
-endfunction()
-
-require_submodule("bx"     "${BX_DIR}")
-require_submodule("bimg"   "${BIMG_DIR}")
-require_submodule("bgfx"   "${BGFX_DIR}")
-require_submodule("assimp" "${ASSIMP_DIR}")
-require_submodule("entt"   "${ENTT_DIR}")
-
-# ---------------------------
-# Platform deps (Linux)
-# ---------------------------
-if(UNIX AND NOT APPLE)
-    find_package(Threads REQUIRED)
-    find_package(OpenGL REQUIRED)
-    find_package(X11 REQUIRED)
+# --- SDL3 dependency ---------------------------------------------------------
+# Preferred reproducible setup: add SDL as a submodule at third_party/SDL.
+# A system SDL3 package remains supported for Linux distributions and CI images.
+if(AX_USE_VENDORED_SDL3 AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/third_party/SDL/CMakeLists.txt")
+    message(STATUS "[AXEngine] Using vendored SDL3 from third_party/SDL")
+    set(SDL_TESTS OFF CACHE BOOL "" FORCE)
+    set(SDL_EXAMPLES OFF CACHE BOOL "" FORCE)
+    add_subdirectory(third_party/SDL EXCLUDE_FROM_ALL)
 else()
-    message(FATAL_ERROR "This CMakeLists currently targets Linux (UNIX non-Apple).")
-endif()
-
-# ---------------------------
-# EnTT (header-only)
-# ---------------------------
-add_library(entt INTERFACE)
-add_library(EnTT::EnTT ALIAS entt)
-target_include_directories(entt INTERFACE "${ENTT_DIR}/single_include")
-
-# ---------------------------
-# Assimp
-# ---------------------------
-set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
-set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_NO_EXPORT ON CACHE BOOL "" FORCE)
-set(ASSIMP_WARNINGS_AS_ERRORS OFF CACHE BOOL "" FORCE)
-set(ASSIMP_WERROR OFF CACHE BOOL "" FORCE)
-
-add_subdirectory("${ASSIMP_DIR}" "${CMAKE_BINARY_DIR}/_deps_assimp" EXCLUDE_FROM_ALL)
-
-if(TARGET assimp::assimp)
-    set(ASSIMP_TARGET assimp::assimp)
-elseif(TARGET assimp)
-    set(ASSIMP_TARGET assimp)
-else()
-    message(FATAL_ERROR "Assimp target not found after add_subdirectory().")
-endif()
-
-# ---------------------------
-# bgfx/bimg/bx via bgfx.cmake
-# ---------------------------
-include(FetchContent)
-
-option(USE_LOCAL_BGFX_CMAKE "Use submods/bgfx.cmake instead of downloading" OFF)
-
-# Force bgfx.cmake to use your local submodules for bgfx/bimg/bx
-set(BGFX_DIR "${BGFX_DIR}" CACHE PATH "" FORCE)
-set(BIMG_DIR "${BIMG_DIR}" CACHE PATH "" FORCE)
-set(BX_DIR   "${BX_DIR}"   CACHE PATH "" FORCE)
-
-set(BGFX_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(BGFX_BUILD_TOOLS    ON  CACHE BOOL "" FORCE) # shaderc
-set(BGFX_INSTALL        OFF CACHE BOOL "" FORCE)
-
-if(USE_LOCAL_BGFX_CMAKE)
-    if(NOT EXISTS "${SUBMODS_DIR}/bgfx.cmake/CMakeLists.txt")
+    find_package(SDL3 3.2 QUIET CONFIG COMPONENTS SDL3)
+    if(NOT SDL3_FOUND)
         message(FATAL_ERROR
-        "USE_LOCAL_BGFX_CMAKE=ON but submods/bgfx.cmake is missing.\n"
-        "Either add bgfx.cmake as a submodule at submods/bgfx.cmake, or set USE_LOCAL_BGFX_CMAKE=OFF."
+            "SDL3 was not found. Use one of these supported setups:\n"
+            "  1. Add SDL as a submodule at third_party/SDL, then configure again.\n"
+            "  2. Install SDL3 3.2+ development files that provide SDL3Config.cmake.\n"
+            "You can set SDL3_DIR explicitly when the package is installed in a custom prefix."
         )
     endif()
-    add_subdirectory("${SUBMODS_DIR}/bgfx.cmake" "${CMAKE_BINARY_DIR}/_deps_bgfx_cmake")
-    else()
-    FetchContent_Declare(
-        bgfx_cmake
-        GIT_REPOSITORY https://github.com/bkaradzic/bgfx.cmake.git
-        GIT_TAG        master
-    )
-    FetchContent_MakeAvailable(bgfx_cmake)
 endif()
 
-if(NOT TARGET bgfx OR NOT TARGET bimg OR NOT TARGET bx)
-    message(FATAL_ERROR "Expected bgfx/bimg/bx targets not created. bgfx.cmake mismatch.")
+# --- AX platform detection ---------------------------------------------------
+if(WIN32)
+    set(AX_PLATFORM_NAME "Windows")
+elseif(APPLE)
+    set(AX_PLATFORM_NAME "macOS")
+elseif(UNIX)
+    set(AX_PLATFORM_NAME "Linux")
+else()
+    set(AX_PLATFORM_NAME "Unknown")
 endif()
+message(STATUS "[AXEngine] Host platform: ${AX_PLATFORM_NAME}")
+add_compile_definitions(AX_PLATFORM_NAME="${AX_PLATFORM_NAME}")
 
-# ---------------------------
-# Linux: shaderc HLSL workaround
-# ---------------------------
-if(UNIX AND NOT APPLE AND TARGET shaderc)
-    get_target_property(_shaderc_sources shaderc SOURCES)
-    if(_shaderc_sources)
-        list(FILTER _shaderc_sources EXCLUDE REGEX "shaderc_hlsl\\.cpp$")
-        set_property(TARGET shaderc PROPERTY SOURCES "${_shaderc_sources}")
-    endif()
-
-    set(SHADERC_HLSL_STUB "${CMAKE_BINARY_DIR}/shaderc_hlsl_stub.cpp")
-    file(WRITE "${SHADERC_HLSL_STUB}"
-    "#include <string>\n"
-    "namespace bx { struct WriterI; }\n"
-    "namespace bgfx {\n"
-    "  struct Options;\n"
-    "  bool compileHLSLShader(const Options&, unsigned int, const std::string&, bx::WriterI*, bx::WriterI*) { return false; }\n"
-    "}\n"
-    )
-    target_sources(shaderc PRIVATE "${SHADERC_HLSL_STUB}")
-endif()
-
-# ---------------------------
-# AXEngine library (engine backbone)
-# ---------------------------
-set(AXENGINE_SOURCES
-    src/core/App.cpp
-    src/core/Time.cpp
-    src/ecs/Components.cpp
-    src/ecs/Systems.cpp
-    src/assets/Mesh.cpp
-    src/assets/AssetSystem.cpp
-    src/render/Renderer.cpp
-    src/render/BgfxHelpers.cpp
+# --- glad --------------------------------------------------------------------
+add_library(glad STATIC third_party/glad/src/glad.c)
+target_include_directories(glad PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/glad/include
 )
 
-add_library(AXEngine STATIC ${AXENGINE_SOURCES})
-add_library(AX::Engine ALIAS AXEngine)
+# --- Reusable engine library -------------------------------------------------
+file(GLOB_RECURSE AX_ENGINE_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+)
+
+# createGame() belongs to an executable, never to the reusable engine library.
+set(AX_DEFAULT_GAME_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/src/runtime/AXDefaultGame.cpp")
+list(REMOVE_ITEM AX_ENGINE_SOURCES "${AX_DEFAULT_GAME_SOURCE}")
+
+add_library(AXEngine STATIC ${AX_ENGINE_SOURCES})
+add_library(AXEngine::AXEngine ALIAS AXEngine)
 
 target_include_directories(AXEngine
     PUBLIC
-        "${PROJECT_SOURCE_DIR}/include"
-        "${BGFX_DIR}/include"
-        "${BX_DIR}/include"
-        "${BIMG_DIR}/include"
-    PRIVATE
-        "${BGFX_DIR}/3rdparty"
-        "${BGFX_DIR}/examples/common"
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/glad/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/third_party/tinygltf
 )
 
 target_link_libraries(AXEngine
     PUBLIC
-        EnTT::EnTT
-    PRIVATE
-        bgfx bimg bx bimg_decode
-        ${ASSIMP_TARGET}
-        OpenGL::GL
-        X11::X11
-        ${CMAKE_DL_LIBS}
-        Threads::Threads
+        SDL3::SDL3
+        glad
 )
 
-set_target_properties(AXEngine PROPERTIES
-    UNITY_BUILD ${AX_UNITY_BUILD}
-)
-
-if(AX_ENABLE_WARNINGS)
-    target_compile_options(AXEngine PRIVATE -Wall -Wextra -Wpedantic)
+if(UNIX AND NOT APPLE)
+    target_link_libraries(AXEngine PUBLIC dl)
 endif()
 
-if(AX_ENABLE_ASAN)
-    target_compile_options(AXEngine PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer)
-    target_link_options(AXEngine PRIVATE -fsanitize=address,undefined)
-endif()
-
-# ---------------------------
-# bx header requirement: BX_CONFIG_DEBUG must be defined
-# (Robust for single-config generators: Makefiles/Ninja)
-# ---------------------------
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(AX_BX_DEBUG 1)
-else()
-    set(AX_BX_DEBUG 0)
-endif()
-
-# Export to anything including engine headers
-target_compile_definitions(AXEngine PUBLIC BX_CONFIG_DEBUG=${AX_BX_DEBUG})
-
-# ---------------------------
-# bgfx shader compilation
-# ---------------------------
-set(BGFX_SHADER_PLATFORM linux)
-set(BGFX_SHADER_PROFILE spirv)
-set(BGFX_SHADER_TYPE spirv)
-
-set(SHADER_SRC_DIR "${PROJECT_SOURCE_DIR}/shaders/src")
-set(SHADER_BIN_DIR "${PROJECT_SOURCE_DIR}/shaders/compiled/${BGFX_SHADER_TYPE}")
-file(MAKE_DIRECTORY "${SHADER_BIN_DIR}")
-
-if(NOT TARGET shaderc)
-    message(FATAL_ERROR "shaderc target not found. BGFX_BUILD_TOOLS must be ON.")
-endif()
-
-function(bgfx_compile_shader INPUT OUTPUT TYPE)
-    add_custom_command(
-        OUTPUT "${OUTPUT}"
-        COMMAND $<TARGET_FILE:shaderc>
-            -f "${INPUT}"
-            -o "${OUTPUT}"
-            --type ${TYPE}
-            --platform ${BGFX_SHADER_PLATFORM}
-            --profile ${BGFX_SHADER_PROFILE}
-            --varyingdef "${SHADER_SRC_DIR}/varying.def.sc"
-            -i "${BGFX_DIR}/src"
-            -i "${SHADER_SRC_DIR}"
-        DEPENDS "${INPUT}" "${SHADER_SRC_DIR}/varying.def.sc"
-        COMMENT "Compiling bgfx shader: ${INPUT}"
-        VERBATIM
-    )
-endfunction()
-
-set(SHADERS
-    vs_mesh
-    fs_mesh
-)
-
-set(SHADER_OUTPUTS)
-foreach(SHADER ${SHADERS})
-    if(SHADER MATCHES "^vs_")
-        set(TYPE v)
-    elseif(SHADER MATCHES "^fs_")
-        set(TYPE f)
-    else()
-        message(FATAL_ERROR "Shader ${SHADER} must start with vs_ or fs_")
+# Reusable engine sources must never reach into project/user scripts.
+foreach(AX_SOURCE IN LISTS AX_ENGINE_SOURCES)
+    file(READ "${AX_SOURCE}" AX_SOURCE_TEXT)
+    if(AX_SOURCE_TEXT MATCHES "scripts/Player\\.h|scripts/Environment\\.h")
+        message(FATAL_ERROR
+            "Reusable engine source depends on project scripts: ${AX_SOURCE}\n"
+            "Move that implementation into scripts/ or introduce an engine interface."
+        )
     endif()
-
-    set(SRC "${SHADER_SRC_DIR}/${SHADER}.sc")
-    set(OUT "${SHADER_BIN_DIR}/${SHADER}.bin")
-
-    bgfx_compile_shader("${SRC}" "${OUT}" "${TYPE}")
-    list(APPEND SHADER_OUTPUTS "${OUT}")
 endforeach()
 
-add_custom_target(shaders ALL DEPENDS ${SHADER_OUTPUTS})
-
-# ---------------------------
-# Optional: copy bgfx runtime (if you still want it)
-# ---------------------------
-file(COPY
-    "${BGFX_DIR}/examples/runtime/"
-    DESTINATION "${CMAKE_BINARY_DIR}/runtime"
+# --- Game executable ---------------------------------------------------------
+file(GLOB_RECURSE AX_GAME_SCRIPT_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/scripts/*.cpp"
 )
 
-# ---------------------------
-# Sandbox executable + user scripts
-# ---------------------------
-if(AX_BUILD_SANDBOX)
+set(AX_GENERATED_SOURCES)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated/AXGeneratedRegistries.cpp")
+    list(APPEND AX_GENERATED_SOURCES
+        "${CMAKE_CURRENT_SOURCE_DIR}/generated/AXGeneratedRegistries.cpp"
+    )
+endif()
 
-    # Engine-owned main that calls CreateGame() from scripts/
-    add_executable(AXSandbox game/main.cpp)
+if(AX_GAME_SCRIPT_SOURCES)
+    message(STATUS "[AXEngine] Building project gameplay from scripts/.")
+    set(AX_CREATE_GAME_SOURCE ${AX_GAME_SCRIPT_SOURCES})
+else()
+    message(STATUS "[AXEngine] No user scripts found; using the built-in empty game.")
+    set(AX_CREATE_GAME_SOURCE ${AX_DEFAULT_GAME_SOURCE})
+endif()
 
-    # Compile everything in scripts/ into a library
-    file(GLOB_RECURSE AX_SCRIPT_SOURCES CONFIGURE_DEPENDS
-        "${PROJECT_SOURCE_DIR}/scripts/*.cpp"
-        "${PROJECT_SOURCE_DIR}/scripts/*.cxx"
+add_executable(Game
+    main.cpp
+    ${AX_CREATE_GAME_SOURCE}
+    ${AX_GENERATED_SOURCES}
+)
+
+target_include_directories(Game PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/scripts
+)
+
+target_link_libraries(Game PRIVATE AXEngine::AXEngine)
+
+set_target_properties(Game PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+
+# --- Optional project-content sync -------------------------------------------
+# A newly downloaded AXEngine project is allowed to contain no assets/, scripts/,
+# generated/, or project.axproject yet. The build-time CMake script checks every
+# source path before copying, so deleting optional project content cannot break
+# an otherwise valid engine build.
+add_custom_target(SyncRuntimeAssets
+    COMMAND ${CMAKE_COMMAND}
+        -DAX_SOURCE_DIR:PATH=${CMAKE_CURRENT_SOURCE_DIR}
+        -DAX_BINARY_DIR:PATH=${CMAKE_BINARY_DIR}
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/SyncRuntimeAssets.cmake
+    COMMENT "Refreshing optional AX project content"
+    VERBATIM
+)
+
+add_dependencies(Game SyncRuntimeAssets)
+
+# --- Asset validation --------------------------------------------------------
+find_package(Python3 QUIET COMPONENTS Interpreter)
+if(Python3_Interpreter_FOUND)
+    add_custom_target(ValidateAssets
+        COMMAND ${Python3_EXECUTABLE}
+            ${CMAKE_CURRENT_SOURCE_DIR}/tools/validate_assets.py
+            ${CMAKE_CURRENT_SOURCE_DIR}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Validating AX asset references"
+    )
+endif()
+
+# --- Optional smoke tests ----------------------------------------------------
+if(AX_BUILD_TESTS)
+    enable_testing()
+
+    add_executable(AXCoreTypeSmoke tests/CoreTypeSmoke.cpp)
+    target_link_libraries(AXCoreTypeSmoke PRIVATE AXEngine::AXEngine)
+    add_test(NAME AXCoreTypeSmoke COMMAND AXCoreTypeSmoke)
+
+    add_executable(AXAssetParserSmoke tests/AssetParserSmoke.cpp)
+    target_link_libraries(AXAssetParserSmoke PRIVATE AXEngine::AXEngine)
+    add_test(NAME AXAssetParserSmoke COMMAND AXAssetParserSmoke)
+    set_tests_properties(AXAssetParserSmoke PROPERTIES
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+endif()
+
+# --- Optional AXEditor target ------------------------------------------------
+if(AX_BUILD_EDITOR)
+    set(IMGUI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_party/imgui)
+
+    if(NOT EXISTS ${IMGUI_DIR}/imgui.cpp)
+        message(FATAL_ERROR
+            "AX_BUILD_EDITOR=ON but third_party/imgui was not found.\n"
+            "Install it with:\n"
+            "  git clone https://github.com/ocornut/imgui third_party/imgui\n"
+        )
+    endif()
+
+    file(GLOB_RECURSE AX_EDITOR_SOURCES CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/editor/*.cpp"
     )
 
-    add_library(AXScripts STATIC ${AX_SCRIPT_SOURCES})
-
-    target_include_directories(AXScripts PUBLIC
-        "${PROJECT_SOURCE_DIR}/include"
-        "${PROJECT_SOURCE_DIR}/scripts"
+    set(IMGUI_SOURCES
+        ${IMGUI_DIR}/imgui.cpp
+        ${IMGUI_DIR}/imgui_draw.cpp
+        ${IMGUI_DIR}/imgui_tables.cpp
+        ${IMGUI_DIR}/imgui_widgets.cpp
+        ${IMGUI_DIR}/backends/imgui_impl_sdl3.cpp
+        ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
+        ${IMGUI_DIR}/misc/cpp/imgui_stdlib.cpp
     )
 
-    # Guarantee bx headers compile in scripts too (belt + suspenders)
-    target_compile_definitions(AXScripts PRIVATE BX_CONFIG_DEBUG=${AX_BX_DEBUG})
-
-    target_link_libraries(AXScripts PRIVATE AX::Engine)
-
-    target_link_libraries(AXSandbox
-        PRIVATE
-        AX::Engine
-        AXScripts
+    add_executable(AXEditor
+        ${AX_EDITOR_SOURCES}
+        ${IMGUI_SOURCES}
     )
 
-    # Build shaders before sandbox
-    add_dependencies(AXSandbox shaders)
-
-    # Copy compiled shaders beside the executable
-    add_custom_command(TARGET AXSandbox POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory
-            "$<TARGET_FILE_DIR:AXSandbox>/shaders/compiled/${BGFX_SHADER_TYPE}"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${SHADER_BIN_DIR}"
-            "$<TARGET_FILE_DIR:AXSandbox>/shaders/compiled/${BGFX_SHADER_TYPE}"
-        COMMENT "Copying compiled shaders to sandbox output"
-        VERBATIM
+    target_include_directories(AXEditor PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/editor
+        ${IMGUI_DIR}
+        ${IMGUI_DIR}/backends
     )
 
-    # Copy user-space folders beside the executable
-    add_custom_command(TARGET AXSandbox POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${PROJECT_SOURCE_DIR}/assets"
-            "$<TARGET_FILE_DIR:AXSandbox>/assets"
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${PROJECT_SOURCE_DIR}/scripts"
-            "$<TARGET_FILE_DIR:AXSandbox>/scripts"
-        COMMENT "Copying user-space assets/scripts to sandbox output"
-        VERBATIM
-    )
+    target_link_libraries(AXEditor PRIVATE AXEngine::AXEngine)
 
-    # Debug info file
-    file(WRITE "${CMAKE_BINARY_DIR}/shader_paths.txt"
-    "Shader source directory: ${SHADER_SRC_DIR}\n"
-    "Shader output directory: ${SHADER_BIN_DIR}\n"
-    "Build directory: ${CMAKE_BINARY_DIR}\n"
-    "Executable directory: $<TARGET_FILE_DIR:AXSandbox>\n"
+    set_target_properties(AXEditor PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
     )
-
 endif()

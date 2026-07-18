@@ -1,0 +1,27 @@
+{
+  "format": "AXAttack",
+  "assetId": "attack-sword-02",
+  "version": 1,
+  "name": "SwordAttack2",
+  "duration": 0.70,
+  "colliders": [
+    {
+      "name": "ReverseSlash",
+      "shape": "Box",
+      "direction": "Forward",
+      "offset": [0.15, 1.15, 1.95],
+      "rotation": [0.0, 15.0, 0.0],
+      "size": [3.5, 1.5, 2.1],
+      "radius": 1.0,
+      "height": 2.0,
+      "activeFrom": 0.16,
+      "activeTo": 0.34,
+      "damage": 20.0,
+      "hitstop": 0.055,
+      "knockback": [0.0, 1.0, 6.0],
+      "launch": false,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

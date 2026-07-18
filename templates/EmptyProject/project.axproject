@@ -1,0 +1,9 @@
+{
+  "format": "AXProject",
+  "version": 1,
+  "name": "AXEngineDefaultProject",
+  "startupScene": "assets/scenes/Empty.axscene",
+  "assetRoot": "assets",
+  "scriptRoot": "scripts",
+  "generatedRoot": "generated"
+}

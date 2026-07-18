@@ -1,0 +1,21 @@
+{
+  "format": "AXComboMove",
+  "version": 1,
+  "name": "SwordTrailExample",
+  "animation": {
+    "clip": "SwordAttack1",
+    "speed": 1.25,
+    "rootMotion": true
+  },
+  "events": [
+    { "time": 0.10, "type": "EnableSwordTrail", "trail": "DefaultSwordTrail" },
+    { "time": 0.34, "type": "DisableSwordTrail", "trail": "DefaultSwordTrail" },
+    { "time": 0.18, "type": "SpawnVFX", "vfx": "SlashSpark" }
+  ],
+  "windows": {
+    "hitStart": 0.18,
+    "hitEnd": 0.42,
+    "cancelStart": 0.54,
+    "cancelEnd": 0.84
+  }
+}

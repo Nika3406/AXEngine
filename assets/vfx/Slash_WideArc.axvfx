@@ -1,0 +1,12 @@
+{
+  "type": "AXVFX",
+  "assetId": "vfx-slash-widearc",
+  "version": 1,
+  "kind": "SlashMeshVFX",
+  "mesh": "assets/vfx/slash_arc.glb",
+  "material": "assets/materials/Slash_Additive.axmat",
+  "lifetime": 0.22,
+  "billboard": false,
+  "bloom": true,
+  "scale": [2.8, 1.2, 1.0]
+}

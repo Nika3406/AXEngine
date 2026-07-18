@@ -1,0 +1,13 @@
+{
+  "type": "AXRenderProfile",
+  "assetId": "render-cartoon-default",
+  "version": 1,
+  "mode": "Cartoon",
+  "pbr": false,
+  "celShading": true,
+  "toonBands": 4,
+  "outline": true,
+  "bloom": false,
+  "fog": false,
+  "colorGrade": { "exposure": 1.0, "contrast": 1.18, "saturation": 1.25 }
+}

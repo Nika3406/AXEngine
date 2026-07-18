@@ -1,0 +1,16 @@
+{
+  "type": "AXGameplayEvents",
+  "version": 1,
+  "description": "Genre-neutral gameplay event names. User scripts decide what these do.",
+  "events": [
+    { "name": "OnSceneLoaded", "payload": "scenePath" },
+    { "name": "OnInputAction", "payload": "actionName" },
+    { "name": "OnAttackHit", "payload": "damage, hitPoint, attacker, target" },
+    { "name": "OnTriggerEnter", "payload": "triggerId, objectId" },
+    { "name": "OnTriggerExit", "payload": "triggerId, objectId" },
+    { "name": "OnProjectileHit", "payload": "projectileId, targetId, hitPoint" },
+    { "name": "OnAnimationEvent", "payload": "clipName, eventName, timeSeconds" },
+    { "name": "OnObjectSpawned", "payload": "objectId, archetype" },
+    { "name": "OnObjectDestroyed", "payload": "objectId" }
+  ]
+}

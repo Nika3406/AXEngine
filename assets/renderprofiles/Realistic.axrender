@@ -1,0 +1,12 @@
+{
+  "type": "AXRenderProfile",
+  "assetId": "render-realistic-default",
+  "version": 1,
+  "mode": "Realistic",
+  "pbr": true,
+  "celShading": false,
+  "outline": false,
+  "bloom": true,
+  "fog": true,
+  "colorGrade": { "exposure": 1.0, "contrast": 1.0, "saturation": 1.0 }
+}

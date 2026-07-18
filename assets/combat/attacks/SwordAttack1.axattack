@@ -1,0 +1,26 @@
+{
+  "format": "AXAttack",
+  "version": 1,
+  "name": "SwordAttack1",
+  "duration": 0.62,
+  "colliders": [
+    {
+      "name": "MainSlash",
+      "shape": "Capsule",
+      "direction": "Forward",
+      "offset": [0, 1.1, 1.8],
+      "rotation": [90, 0, 0],
+      "size": [3.2, 1.4, 2],
+      "radius": 1,
+      "height": 2,
+      "activeFrom": 0.14,
+      "activeTo": 0.26,
+      "damage": 18,
+      "hitstop": 0.05,
+      "knockback": [0, 1.2, 5],
+      "launch": false,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

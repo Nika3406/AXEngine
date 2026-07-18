@@ -1,0 +1,18 @@
+{
+  "format": "AXComponentPresets",
+  "version": 1,
+  "description": "Default editor component presets. These are data-authoring helpers; runtime systems live in src/runtime.",
+  "components": [
+    { "type": "StaticMeshRenderer", "category": "Rendering" },
+    { "type": "SkinnedMeshRenderer", "category": "Rendering" },
+    { "type": "SocketBinding", "category": "Animation" },
+    { "type": "SwordTrail", "category": "Animation" },
+    { "type": "ProceduralAnimator", "category": "Animation" },
+    { "type": "HitboxTimeline", "category": "Combat" },
+    { "type": "ComboMove", "category": "Combat" },
+    { "type": "LODGroup", "category": "Optimization" },
+    { "type": "VoxelTerrain", "category": "Voxel" },
+    { "type": "ProceduralGenerator", "category": "Procedural" },
+    { "type": "ScriptComponent", "category": "User Script" }
+  ]
+}

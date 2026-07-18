@@ -1,3 +1,28 @@
-/build
-.cache/
+/build/
+/imgui.ini
+*.log
+
+# AXEngine build output
+build/
 cmake-build-*/
+out/
+.cache/
+compile_commands.json
+# Compiled files
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+# Editor-generated local state
+imgui.ini
+.ax_backups/
+# IDE and operating-system files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db

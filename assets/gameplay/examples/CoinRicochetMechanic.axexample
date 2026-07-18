@@ -1,0 +1,13 @@
+{
+  "type": "AXGameplayExample",
+  "version": 1,
+  "name": "CoinRicochetMechanic",
+  "purpose": "Shows why the engine needs events/projectiles/triggers, not hardcoded genre gimmicks.",
+  "requires": ["OnProjectileHit", "RuntimeObjectSpawn", "DamageModifier", "VFXSpawn"],
+  "userScriptIdea": [
+    "Spawn coin runtime object when player presses TossCoin.",
+    "Increment coinFlipCount each time the coin is shot upward.",
+    "When a projectile hits the coin, redirect projectile toward nearest enemy.",
+    "Apply damage multiplier based on coinFlipCount and projectile type."
+  ]
+}

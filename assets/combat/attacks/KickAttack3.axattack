@@ -1,0 +1,27 @@
+{
+  "format": "AXAttack",
+  "assetId": "attack-kick-03",
+  "version": 1,
+  "name": "KickAttack3",
+  "duration": 0.82,
+  "colliders": [
+    {
+      "name": "LauncherKick",
+      "shape": "Box",
+      "direction": "Forward",
+      "offset": [0.0, 1.55, 1.25],
+      "rotation": [-18.0, 0.0, 0.0],
+      "size": [2.1, 2.6, 1.45],
+      "radius": 1.0,
+      "height": 2.4,
+      "activeFrom": 0.24,
+      "activeTo": 0.45,
+      "damage": 26.0,
+      "hitstop": 0.06,
+      "knockback": [0.0, 5.5, 3.0],
+      "launch": true,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

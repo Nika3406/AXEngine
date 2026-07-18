@@ -1,0 +1,20 @@
+{
+  "name": "SwordHit",
+  "category": "SFX",
+  "space": "World3D",
+  "clips": [
+    "assets/audio/sword_hit_01.wav",
+    "assets/audio/sword_hit_02.wav",
+    "assets/audio/sword_hit_03.wav"
+  ],
+  "volume": 0.85,
+  "pitch": 1.0,
+  "volumeRandomMin": 0.85,
+  "volumeRandomMax": 1.0,
+  "pitchRandomMin": 0.94,
+  "pitchRandomMax": 1.08,
+  "spatial": true,
+  "minDistance": 1.0,
+  "maxDistance": 28.0,
+  "loop": false
+}

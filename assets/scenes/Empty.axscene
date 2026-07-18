@@ -1,0 +1,64 @@
+{
+  "format": "AXScene",
+  "version": 1,
+  "name": "Empty",
+  "renderProfile": "Basic",
+  "previewGlb": "",
+  "world": {
+    "gravity": -24.0,
+    "unitScale": 1.0
+  },
+  "editorCamera": {
+    "position": [0.0, 3.0, 8.0],
+    "yaw": 180.0,
+    "pitch": -12.0,
+    "distance": 8.0
+  },
+  "objects": [
+    {
+      "id": "obj_camera_main",
+      "name": "Camera_Main",
+      "type": "Camera",
+      "active": true,
+      "static": false,
+      "sourcePath": "",
+      "transform": {
+        "position": [0.0, 2.0, 6.0],
+        "rotation": [-12.0, 180.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "components": [
+        {
+          "type": "Camera",
+          "properties": {
+            "fov": "60",
+            "near": "0.05",
+            "far": "500"
+          }
+        }
+      ]
+    },
+    {
+      "id": "obj_light_sun",
+      "name": "Light_Sun",
+      "type": "Light",
+      "active": true,
+      "static": false,
+      "sourcePath": "",
+      "transform": {
+        "position": [0.0, 6.0, 0.0],
+        "rotation": [-45.0, 35.0, 0.0],
+        "scale": [1.0, 1.0, 1.0]
+      },
+      "components": [
+        {
+          "type": "DirectionalLight",
+          "properties": {
+            "intensity": "1.0",
+            "color": "1,1,1"
+          }
+        }
+      ]
+    }
+  ]
+}

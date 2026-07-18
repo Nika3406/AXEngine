@@ -1,0 +1,26 @@
+{
+  "format": "AXAttack",
+  "version": 1,
+  "name": "SpinSlam",
+  "duration": 0.90,
+  "colliders": [
+    {
+      "name": "CircularImpact",
+      "shape": "Cylinder",
+      "direction": "Forward",
+      "offset": [0.0, 1.0, 0.0],
+      "rotation": [0.0, 0.0, 0.0],
+      "size": [4.2, 1.4, 4.2],
+      "radius": 2.1,
+      "height": 1.4,
+      "activeFrom": 0.25,
+      "activeTo": 0.48,
+      "damage": 34.0,
+      "hitstop": 0.08,
+      "knockback": [0.0, 2.0, 6.5],
+      "launch": false,
+      "knockdown": true,
+      "hitOncePerTarget": true
+    }
+  ]
+}

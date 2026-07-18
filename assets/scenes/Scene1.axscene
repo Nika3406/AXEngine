@@ -1,0 +1,1076 @@
+{
+  "format": "AXScene",
+  "version": 1,
+  "name": "Scene1",
+  "renderProfile": "StylizedAction",
+  "previewGlb": "assets/Scene1.glb",
+  "world": {
+    "gravity": -24,
+    "unitScale": 1
+  },
+  "editor": {
+    "showGrid": true,
+    "sceneCameraPosition": [-701.472, 627.405, 1117.65],
+    "sceneCameraYawPitchDistance": [-35, 24, 1493.57]
+  },
+  "objects": [
+    {
+      "id": "obj_0",
+      "name": "Scene1",
+      "type": "Asset",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": false,
+      "parentIndex": -1,
+      "transform": {
+        "position": [0, 0, 0],
+        "rotation": [0, 0, 0],
+        "scale": [1.5, 1.5, 1.5]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        }
+      ]
+    },
+    {
+      "id": "obj_1",
+      "name": "Scene1/walls",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-20.4493, 2.01806, -12.0319],
+        "rotation": [0, 0, 0],
+        "scale": [22, 4.5, 2.25]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_2",
+      "name": "Scene1/hut",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-9.32116, 5.50157, 42.6962],
+        "rotation": [0, 0, 0],
+        "scale": [16.9612, 7.15272, 2.29209]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_3",
+      "name": "Scene1/outerwall1",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-45, -0.575818, 56.2154],
+        "rotation": [0, -90, 0],
+        "scale": [6.5, 6.5, 6.5]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_4",
+      "name": "Scene1/outergate",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-45, -0.575818, -0.0557709],
+        "rotation": [0, -90, 0],
+        "scale": [6.5, 6.5, 6.5]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_5",
+      "name": "Scene1/outerwall2",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-45, -0.575818, -56.2839],
+        "rotation": [0, -90, 0],
+        "scale": [6.5, 6.5, 6.5]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_6",
+      "name": "Scene1/trainstopper1",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [18.2027, -0.402776, -1.15607],
+        "rotation": [0, 0, 0],
+        "scale": [0.306136, 0.306136, 0.308843]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_7",
+      "name": "Scene1/trainstopper2",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [18.2027, -0.402776, 0.76737],
+        "rotation": [0, 0, 0],
+        "scale": [0.306136, 0.306136, 0.309577]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_8",
+      "name": "Scene1/building1",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-22.5046, 1.24035, -24.7802],
+        "rotation": [0, 0, 0],
+        "scale": [3.88424, 3.88424, 3.88424]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_9",
+      "name": "Scene1/Traintracks",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-35.6304, -1.69258, -0.189009],
+        "rotation": [0, 180, 0],
+        "scale": [2.03371, 2.03371, 2.03371]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_10",
+      "name": "Scene1/interior",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [104.305, -1.8698, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_11",
+      "name": "Scene1/pipe joint",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [104.305, -1.8698, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_12",
+      "name": "Scene1/pipes",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [20.9009, 28.158, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_13",
+      "name": "Scene1/pole",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [44.8752, 31.1608, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_14",
+      "name": "Scene1/pole2",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [68.2163, 31.1608, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_15",
+      "name": "Scene1/pole3",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [91.5295, 31.1608, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_16",
+      "name": "Scene1/traintracksconcrete",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [17.4315, -1.59823, 0.778135],
+        "rotation": [0, 0, 0],
+        "scale": [2.98436, 0.204842, 0.405944]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_17",
+      "name": "Scene1/traintracksconcrete2",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [17.4315, -1.59823, -0.189745],
+        "rotation": [0, 180, 0],
+        "scale": [2.98436, 0.204842, 0.273916]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_18",
+      "name": "Scene1/traintracksconcrete3",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [17.4315, -1.59823, 1.74239],
+        "rotation": [0, 180, 0],
+        "scale": [2.98436, 0.204842, 0.273916]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_19",
+      "name": "Scene1/bigpipe",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [124.359, 35.5825, 82.4173],
+        "rotation": [0, 0, 0],
+        "scale": [0.439447, 0.439447, 0.439447]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_20",
+      "name": "Scene1/warehouse",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [44.8565, 19.5998, 82.4831],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_21",
+      "name": "Scene1/FurnaceBaked",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-9.71672, 1.13657, 37.684],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_22",
+      "name": "Scene1/building3Baked",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [70.4584, 0.360589, 9.24028],
+        "rotation": [0, 0, 0],
+        "scale": [5.04208, 3.0263, 5.04208]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_23",
+      "name": "Scene1/building3Baked.001",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [70.4584, 0.360589, 26.2047],
+        "rotation": [0, 0, 0],
+        "scale": [5.04208, 3.0263, 5.04208]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_24",
+      "name": "Scene1/floorBaked",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [3.29938, -1.8698, 17.3779],
+        "rotation": [0, 0, 0],
+        "scale": [44.9406, 0.479984, 32.4801]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_25",
+      "name": "Scene1/cargoBaked",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [24.6197, 0.52236, 13.8469],
+        "rotation": [0, 22.7694, 0],
+        "scale": [2.5967, 1.89133, 5.64642]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_26",
+      "name": "Scene1/floorBaked.001",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [67.6953, -1.8698, 82.3412],
+        "rotation": [0, 180, 0],
+        "scale": [44.9406, 0.479984, 32.4801]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_27",
+      "name": "Scene1/floorBaked.002",
+      "type": "MeshNode",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [157.528, -1.8698, 62.1502],
+        "rotation": [0, 180, 0],
+        "scale": [44.9406, 0.479984, 32.4801]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "StaticMeshRenderer",
+          "active": true,
+          "dynamic": false,
+          "properties": {"mesh": "from GLB node", "materialOverride": "", "castShadows": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_28",
+      "name": "Scene1/COLLIDER_floor.001",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [3.29938, -1.85705, 17.385],
+        "rotation": [0, 0, 0],
+        "scale": [44.9406, 0.479984, 32.4801]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_29",
+      "name": "Scene1/COLLIDER_floor.004",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [64.488, -1.85705, 82.3602],
+        "rotation": [0, 0, 0],
+        "scale": [44.9406, 0.479984, 32.4801]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_30",
+      "name": "Scene1/COLLIDER_floor.005",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [174.399, -1.85705, 60.2346],
+        "rotation": [0, 0, 0],
+        "scale": [44.9406, 0.479984, 32.4801]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_31",
+      "name": "Scene1/COLLIDER_Furnace.001",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-9.71672, 1.13657, 37.684],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_32",
+      "name": "Scene1/COLLIDER_walls.001",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-20.4493, 2.0308, -12.0248],
+        "rotation": [0, 0, 0],
+        "scale": [22, 4.5, 2.25]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_33",
+      "name": "Scene1/COLLIDER_cargo.001",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [24.6197, 0.371954, 13.854],
+        "rotation": [0, 22.7694, 0],
+        "scale": [2.5967, 2.0409, 5.64642]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_34",
+      "name": "Scene1/COLLIDER_warehouse.001",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [44.8565, 19.6125, 82.4902],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_35",
+      "name": "Scene1/COLLIDER_interior.002",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [104.305, -3.72685, 82.5172],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_36",
+      "name": "Scene1/COLLIDER_hut.001",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [-9.32116, 5.50157, 42.6962],
+        "rotation": [0, 0, 0],
+        "scale": [16.9612, 7.15272, 2.29209]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    },
+    {
+      "id": "obj_37",
+      "name": "Scene1/COLLIDER_trainstopper",
+      "type": "Collider",
+      "sourcePath": "assets/Scene1.glb",
+      "active": true,
+      "static": true,
+      "parentIndex": 0,
+      "transform": {
+        "position": [18.338, -1.04734, -0.189789],
+        "rotation": [0, 0, 0],
+        "scale": [1, 1, 1]
+      },
+      "components": [
+        {
+          "type": "Transform",
+          "active": true,
+          "dynamic": true,
+          "properties": {}
+        },
+        {
+          "type": "MeshCollider",
+          "active": true,
+          "dynamic": false,
+          "properties": {"blocksPlayer": "true", "blocksCamera": "true"}
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "format": "AXAttack",
+  "version": 1,
+  "name": "HighTime",
+  "duration": 0.70,
+  "colliders": [
+    {
+      "name": "LauncherVolume",
+      "shape": "Box",
+      "direction": "Up",
+      "offset": [0.0, 1.8, 1.2],
+      "rotation": [-25.0, 0.0, 0.0],
+      "size": [2.2, 3.2, 1.4],
+      "radius": 1.1,
+      "height": 3.2,
+      "activeFrom": 0.20,
+      "activeTo": 0.34,
+      "damage": 20.0,
+      "hitstop": 0.06,
+      "knockback": [0.0, 8.0, 2.0],
+      "launch": true,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

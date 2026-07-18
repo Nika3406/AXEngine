@@ -1,0 +1,10 @@
+{
+  "name": "UI_Click",
+  "category": "UI",
+  "space": "UI2D",
+  "clip": "assets/audio/ui_click.wav",
+  "volume": 0.65,
+  "pitchRandomMin": 0.98,
+  "pitchRandomMax": 1.03,
+  "loop": false
+}

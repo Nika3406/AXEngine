@@ -1,0 +1,6 @@
+{
+  "type": "AXUI",
+  "assetId": "ui-hud-default",
+  "version": 1,
+  "widgets": ["HealthBar", "StyleRank", "LockOnMarker", "InteractionPrompt"]
+}

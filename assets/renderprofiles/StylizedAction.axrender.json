@@ -1,0 +1,12 @@
+{
+  "name": "StylizedAction",
+  "sunIntensity": 1.2,
+  "shadowStrength": 0.35,
+  "rimIntensity": 0.18,
+  "fogDensity": 0.0015,
+  "exposure": 1.0,
+  "contrast": 1.12,
+  "saturation": 1.0,
+  "bloomEnabled": true,
+  "bloomStrength": 0.65
+}

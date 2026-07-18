@@ -1,0 +1,15 @@
+{
+  "type": "AXMaterial",
+  "assetId": "mat-bloom-blade",
+  "version": 1,
+  "renderMode": "Stylized",
+  "vertexShader": "assets/shaders/stylized_lit.vert",
+  "fragmentShader": "assets/shaders/stylized_lit.frag",
+  "baseColor": [1.0, 1.0, 1.0, 1.0],
+  "roughness": 0.35,
+  "metallic": 0.15,
+  "emission": [1.0, 1.0, 1.0],
+  "cel": true,
+  "outline": false,
+  "bloom": true
+}

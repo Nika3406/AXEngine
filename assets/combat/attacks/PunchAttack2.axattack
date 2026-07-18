@@ -1,0 +1,27 @@
+{
+  "format": "AXAttack",
+  "assetId": "attack-punch-02",
+  "version": 1,
+  "name": "PunchAttack2",
+  "duration": 0.58,
+  "colliders": [
+    {
+      "name": "FollowupStrike",
+      "shape": "Box",
+      "direction": "Forward",
+      "offset": [0.0, 1.12, 1.15],
+      "rotation": [0.0, 0.0, 0.0],
+      "size": [1.75, 1.20, 1.25],
+      "radius": 0.80,
+      "height": 1.2,
+      "activeFrom": 0.12,
+      "activeTo": 0.28,
+      "damage": 14.0,
+      "hitstop": 0.04,
+      "knockback": [0.0, 0.8, 3.8],
+      "launch": false,
+      "knockdown": false,
+      "hitOncePerTarget": true
+    }
+  ]
+}

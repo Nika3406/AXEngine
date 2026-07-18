@@ -1,0 +1,27 @@
+{
+  "format": "AXAttack",
+  "assetId": "attack-sword-03",
+  "version": 1,
+  "name": "SwordAttack3",
+  "duration": 0.92,
+  "colliders": [
+    {
+      "name": "HeavyFinisher",
+      "shape": "Box",
+      "direction": "Forward",
+      "offset": [0.0, 1.2, 2.25],
+      "rotation": [0.0, 0.0, 0.0],
+      "size": [4.2, 1.8, 2.8],
+      "radius": 1.0,
+      "height": 2.0,
+      "activeFrom": 0.26,
+      "activeTo": 0.52,
+      "damage": 34.0,
+      "hitstop": 0.075,
+      "knockback": [0.0, 1.5, 8.0],
+      "launch": false,
+      "knockdown": true,
+      "hitOncePerTarget": true
+    }
+  ]
+}

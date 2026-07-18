@@ -1,0 +1,14 @@
+{
+  "type": "AXMaterial",
+  "assetId": "mat-slash-additive",
+  "version": 1,
+  "renderMode": "VFX Preview",
+  "vertexShader": "assets/shaders/vfx_mesh.vert",
+  "fragmentShader": "assets/shaders/vfx_mesh.frag",
+  "baseColor": [1, 0.18, 0.08, 0.75],
+  "emission": [1, 0.22, 0.05],
+  "blendMode": "Additive",
+  "doubleSided": true,
+  "bloom": true,
+  "spriteSheet": { "framesX": 4, "framesY": 2, "fps": 48 }
+}

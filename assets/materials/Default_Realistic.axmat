@@ -1,0 +1,15 @@
+{
+  "type": "AXMaterial",
+  "assetId": "mat-default-realistic",
+  "version": 1,
+  "renderMode": "Realistic",
+  "vertexShader": "assets/shaders/stylized_lit.vert",
+  "fragmentShader": "assets/shaders/stylized_lit.frag",
+  "baseColor": [1, 1, 1, 1],
+  "roughness": 0.55,
+  "metallic": 0.0,
+  "emission": [0, 0, 0],
+  "cel": false,
+  "outline": false,
+  "bloom": false
+}
